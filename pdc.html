@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Python Dev Center (PDC)</title>
+  <meta name="description" content="Seasoned Python engineers building reliable, modern, and scalable systems." />
+  <meta name="theme-color" content="#0b0f14" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/logo.png" />
+</head>
+<body>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <img src="assets/logo.png" alt="PDC logo" class="logo" />
+        <span>Python Dev Center (PDC)</span>
+      </div>
+
+      <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+
+      <div class="nav-right">
+        <nav id="nav-links" class="nav-links" aria-label="Main navigation">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
+          <a href="https://www.linkedin.com/company/python-dev-center-pdc/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </nav>
+        <div class="lang-switch" aria-label="Language">
+          <a class="lang-link" href="pdc_sr.html">SR</a>
+          <a class="lang-link active" href="pdc.html" aria-current="page">EN</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-wrap">
+        <span class="btn" style="padding:6px 10px;border-radius:999px">Reliable systems</span>
+        <h1>We build scalable <span class="accent">Python</span> platforms</h1>
+        <p>Seasoned engineers with long-standing experience in architecture, development, integrations, and software delivery.
+          We move fast and deliver quality.</p>
+        <div style="margin-top:22px; display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn primary" href="#contact">Contact us</a>
+          <a class="btn" href="https://www.linkedin.com/company/python-dev-center-pdc/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container grid grid-2" style="gap:24px">
+        <div>
+          <h2>About</h2>
+          <p class="lead">At Python Dev Center (PDC) we bring together senior engineers who have led and delivered
+            projects end-to-end—from architecture and design to implementation and production. We focus on clean code,
+            measurable delivery, and sustainable high-performance systems.</p>
+          <ul style="margin:16px 0 0 18px; color:#cfcfcf">
+            <li>Backend (FastAPI, Django, AsyncIO, Kafka)</li>
+            <li>Integrations & event-driven architectures</li>
+            <li>DevOps & Observability (Docker, CI/CD, Prometheus/Grafana)</li>
+            <li>AI/LLM integrations and workflow automation</li>
+          </ul>
+        </div>
+        <div class="panel" style="padding:22px">
+          <div class="muted">Approach</div>
+          <h3 style="margin:6px 0 10px">Scalable, secure, measurable</h3>
+          <p style="color:#cfcfcf; margin:0">
+            We design for performance and maintainability. Modern practices
+            (code review, testing, automated delivery) reduce time-to-value and risk.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="container">
+        <h2>Services</h2>
+        <div class="grid grid-3" style="margin-top:20px">
+          <div class="panel" style="padding:20px">
+            <h3 style="margin:0 0 6px">Consulting & Architecture</h3>
+            <p style="margin:0; color:#cfcfcf">Architecture definition, technology choices, security and scaling.</p>
+          </div>
+          <div class="panel" style="padding:20px">
+            <h3 style="margin:0 0 6px">Development & Integrations</h3>
+            <p style="margin:0; color:#cfcfcf">Backend services, APIs, messaging, third-party integrations.</p>
+          </div>
+          <div class="panel" style="padding:20px">
+            <h3 style="margin:0 0 6px">DevOps & Observability</h3>
+            <p style="margin:0; color:#cfcfcf">CI/CD, monitoring, logging, tracing, SLO/SLA.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="panel" style="padding:22px">
+          <h2>Contact</h2>
+          <div class="grid grid-3" style="margin-top:10px">
+            <div class="item">
+              <div class="muted">Email</div>
+              <a href="mailto:info@pdc.example">info@pdc.example</a>
+            </div>
+            <div class="item">
+              <div class="muted">Address</div>
+              <div>Insert full address (Bosnia & Herzegovina)</div>
+            </div>
+            <div class="item">
+              <div class="muted">Phone</div>
+              <a href="tel:+387000000">+387 00 000 000</a>
+            </div>
+          </div>
+          <div style="margin-top:10px; font-size:14px; color:#aeb0b4">
+            LinkedIn: <a style="text-decoration:underline" target="_blank" rel="noreferrer" href="https://www.linkedin.com/company/python-dev-center-pdc/">python-dev-center-pdc</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year">2025</span> Python Dev Center (PDC). All rights reserved.</div>
+      <div style="display:flex; gap:12px">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

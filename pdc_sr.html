@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Python Dev Center (PDC)</title>
+  <meta name="description" content="Iskusni Python inženjeri – pouzdani, moderni i skalabilni sistemi." />
+  <meta name="theme-color" content="#0b0f14" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/logo.png" />
+</head>
+<body>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <img src="assets/logo.png" alt="PDC logo" class="logo" />
+        <span>Python Dev Center (PDC)</span>
+      </div>
+
+      <button id="nav-toggle" class="nav-toggle" aria-label="Meni" aria-expanded="false">☰</button>
+
+      <div class="nav-right">
+        <nav id="nav-links" class="nav-links" aria-label="Glavna navigacija">
+          <a href="#about">O nama</a>
+          <a href="#services">Usluge</a>
+          <a href="#contact">Kontakt</a>
+          <a href="https://www.linkedin.com/company/python-dev-center-pdc/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </nav>
+        <div class="lang-switch" aria-label="Jezik">
+          <a class="lang-link active" href="sr.html" aria-current="page">SR</a>
+          <a class="lang-link" href="pdc.html">EN</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-wrap">
+        <span class="btn" style="padding:6px 10px;border-radius:999px">Pouzdani sistemi</span>
+        <h1>Gradimo skalabilne <span class="accent">Python</span> platforme</h1>
+        <p>Iskusni inženjeri sa dugogodišnjim iskustvom u arhitekturi, razvoju, integracijama i isporuci softvera.
+          Jednostavno – brzi smo i isporučujemo kvalitet.</p>
+        <div style="margin-top:22px; display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn primary" href="#contact">Kontaktirajte nas</a>
+          <a class="btn" href="https://www.linkedin.com/company/python-dev-center-pdc/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container grid grid-2" style="gap:24px">
+        <div>
+          <h2>O nama</h2>
+          <p class="lead">U Python Dev Center (PDC) okupljamo senior inženjere koji su vodili i isporučivali
+            projekte od dizajna i arhitekture do implementacije i produkcije. Fokus nam je na čistom kodu,
+            mernoj isporuci i održivim sistemima visokih performansi.</p>
+          <ul style="margin:16px 0 0 18px; color:#cfcfcf">
+            <li>Backend (FastAPI, Django, AsyncIO, Kafka)</li>
+            <li>Integracije & event-driven arhitekture</li>
+            <li>DevOps & Observability (Docker, CI/CD, Prometheus/Grafana)</li>
+            <li>AI/LLM integracije i automatizacija procesa</li>
+          </ul>
+        </div>
+        <div class="panel" style="padding:22px">
+          <div class="muted">Pristup</div>
+          <h3 style="margin:6px 0 10px">Skalabilno, sigurno, merljivo</h3>
+          <p style="color:#cfcfcf; margin:0">
+            Gradimo sisteme optimizovane za performanse i održavanje.
+            Primjenjujemo moderne prakse (code review, testovi, automatizovana isporuka)
+            kako bismo skratili vreme do vrednosti i smanjili rizik.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="container">
+        <h2>Usluge</h2>
+        <div class="grid grid-3" style="margin-top:20px">
+          <div class="panel" style="padding:20px">
+            <h3 style="margin:0 0 6px">Konzalting & Arhitektura</h3>
+            <p style="margin:0; color:#cfcfcf">Definicija arhitekture, izbor tehnologija, sigurnost i skaliranje.</p>
+          </div>
+          <div class="panel" style="padding:20px">
+            <h3 style="margin:0 0 6px">Razvoj i Integracije</h3>
+            <p style="margin:0; color:#cfcfcf">Backend servisi, API-jevi, poruke, integracije sa third-party sistemima.</p>
+          </div>
+          <div class="panel" style="padding:20px">
+            <h3 style="margin:0 0 6px">DevOps & Observability</h3>
+            <p style="margin:0; color:#cfcfcf">CI/CD, monitoring, logovanje, tracing, SLO/SLA.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="panel" style="padding:22px">
+          <h2>Kontakt</h2>
+          <div class="grid grid-3" style="margin-top:10px">
+            <div class="item">
+              <div class="muted">Email</div>
+              <a href="mailto:info@pdc.example">info@pdc.example</a>
+            </div>
+            <div class="item">
+              <div class="muted">Adresa</div>
+              <div>Dodati tačnu adresu (BiH)</div>
+            </div>
+            <div class="item">
+              <div class="muted">Telefon</div>
+              <a href="tel:+387000000">+387 00 000 000</a>
+            </div>
+          </div>
+          <div style="margin-top:10px; font-size:14px; color:#aeb0b4">
+            LinkedIn: <a style="text-decoration:underline" target="_blank" rel="noreferrer" href="https://www.linkedin.com/company/python-dev-center-pdc/">python-dev-center-pdc</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year">2025</span> Python Dev Center (PDC). Sva prava zadržana.</div>
+      <div style="display:flex; gap:12px">
+        <a href="#about">O nama</a>
+        <a href="#services">Usluge</a>
+        <a href="#contact">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
