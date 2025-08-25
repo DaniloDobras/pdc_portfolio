@@ -2,271 +2,124 @@
   --bg:#0b0f14; --panel:rgba(255,255,255,.04); --border:rgba(255,255,255,.12);
   --text:#e5e7eb; --muted:#a3a3a3; --brand1:#22d3ee; --brand2:#38bdf8;
   --radius:18px; --maxw:1160px; --shadow:0 12px 40px rgba(0,0,0,.35);
+  --logo-h:74px;
+  --nav-h:64px; 
 }
 
 *{box-sizing:border-box}
 html,body{height:100%}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth; scroll-padding-top: var(--nav-h);}
 body{
   margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color:var(--text); background:var(--bg); line-height:1.6; padding-top: var(--nav-h); 
+  color:var(--text); background:var(--bg); line-height:1.6;
+  padding-top: var(--nav-h); 
 }
 a{color:inherit; text-decoration:none}
 .container{width:100%; max-width:var(--maxw); margin:0 auto; padding:0 20px}
 
-.btn{
-  display:inline-flex; align-items:center; gap:.5rem;
-  padding:12px 18px; border-radius:14px;
-  border:1px solid var(--border); background:var(--panel);
-  font-weight:600; transition:.2s;
-}
+
+.bg-particles{position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:-1; opacity:.45}
+
+.btn{display:inline-flex; align-items:center; gap:.5rem; padding:12px 18px; border-radius:14px; border:1px solid var(--border); background:var(--panel); font-weight:600; transition:.2s}
 .btn:hover{border-color:rgba(255,255,255,.2); background:rgba(255,255,255,.06); transform:translateY(-1px)}
 .btn.primary{background:#fff; color:#0b0f14; border-color:#fff}
 .btn.primary:hover{opacity:.92}
 
-header.nav{
-  position: fixed;      /* was: sticky */
-  top: 0; left: 0; right: 0;
-  z-index: 50;
-  backdrop-filter: blur(10px);
-  background: rgba(11,15,20,.6);
-  border-bottom: 1px solid var(--border);
-}
-.nav-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+header.nav{position:fixed; top:0; left:0; right:0; z-index:50; backdrop-filter: blur(10px); background:rgba(11,15,20,.6); border-bottom:1px solid var(--border)}
+.nav-inner{display:flex; align-items:center; justify-content:space-between; padding:14px 0; position:relative}
 .brand{display:flex; align-items:center; gap:12px; font-weight:700}
-.brand img{height:38px; width:auto; display:block; border-radius:10px}
+.logo{height:var(--logo-h); width:auto; display:block; border-radius:10px}
+.nav-right{display:flex; align-items:center; gap:14px; position:relative}
 
-.nav-right{display:flex; align-items:center; gap:14px}
 .nav-links{display:flex; gap:18px; align-items:center}
 .nav-links a{color:#cfcfcf; font-size:14px}
 .nav-links a:hover{color:#fff}
 
+.lang-and-toggle{display:flex; align-items:center; gap:8px}
 .lang-switch{display:flex; gap:6px; align-items:center}
-.lang-link{
-  padding:6px 10px; border-radius:999px; font-size:12px;
-  border:1px solid var(--border); background:var(--panel); color:#cfcfcf;
-  letter-spacing:.08em; text-transform:uppercase; transition:.2s;
-}
+.lang-link{padding:6px 10px; border-radius:999px; font-size:12px; border:1px solid var(--border); background:var(--panel); color:#cfcfcf; letter-spacing:.08em; text-transform:uppercase; transition:.2s}
 .lang-link:hover{border-color:rgba(255,255,255,.2); color:#fff}
 .lang-link.active{background:#fff; color:#0b0f14; border-color:#fff}
-
-.nav-toggle{
-  display:none; width:40px; height:40px; border-radius:10px;
-  border:1px solid var(--border); background:var(--panel); color:#fff; cursor:pointer;
-}
+.nav-toggle{display:none; width:40px; height:40px; border-radius:10px; border:1px solid var(--border); background:var(--panel); color:#fff; cursor:pointer}
 .nav-toggle:hover{border-color:rgba(255,255,255,.2); background:rgba(255,255,255,.06)}
 
-@media (max-width: 780px){
+
+@media (max-width: 900px){
   .nav-links{
-    position: absolute;
-    right: 20px;
-    top: calc(var(--nav-h) + 8px);  /* was: top:60px */
-    background: rgba(20,26,34,.98);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    box-shadow: var(--shadow);
-    padding: 12px; display: none; flex-direction: column; min-width: 180px;
+    position:absolute; right:0; top:calc(100% + 8px);
+    display:none; flex-direction:column; gap:10px; min-width:220px; padding:12px;
+    border:1px solid var(--border); border-radius:14px; background:rgba(20,26,34,.98); box-shadow:var(--shadow); z-index:60;
   }
-  .nav-links.open{ display: flex; }
+  .nav-links a{padding:8px 10px; color:#e5e7eb}
+  .nav-links a:hover{background:rgba(255,255,255,.06); border-radius:10px}
+  .nav-links.open{display:flex}
+  .nav-toggle{display:block}
 }
 
-.bg-particles{
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  pointer-events: none;
-  z-index: -1; /* behind content */
-}
-
-.hero{position:relative; overflow:hidden}
-.hero::before{
-  content:""; position:absolute; inset:-15% -10% auto -10%; height:120%;
+/* Hero */
+.hero{position:relative; overflow:hidden; z-index:1}
+.hero::before{content:""; position:absolute; inset:-15% -10% auto -10%; height:120%;
   background:
     radial-gradient(900px 450px at 80% -10%, rgba(56,189,248,.18), transparent 60%),
     radial-gradient(900px 450px at 10% 120%, rgba(34,211,238,.20), transparent 60%);
-    pointer-events:none; z-index:-2;
+  pointer-events:none; z-index:-1;
 }
 .hero-wrap{padding:64px 0 88px}
-.hero h1{font-size:clamp(32px,6vw,60px); line-height:1.1; margin:0 0 12px}
-.accent{
-  background: linear-gradient(90deg,var(--brand1),var(--brand2));
-  -webkit-background-clip:text; background-clip:text; color:transparent;
-}
-.hero p{max-width:720px; color:#c7c7c7; margin:0}
+.hero h1{font-size:clamp(32px,6vw,60px); line-height:1.1; margin:12px 0}
+.accent{background: linear-gradient(90deg,var(--brand1),var(--brand2)); -webkit-background-clip:text; background-clip:text; color:transparent}
+.type{display:inline-flex; align-items:baseline}
+.caret{display:inline-block; width:10px; height:1.1em; transform:translateY(.12em); border-right:2px solid #fff; animation:blink 1s steps(1,end) infinite}
+@keyframes blink{50%{border-color:transparent}}
+
 
 section{padding:64px 0}
-.panel{background:var(--panel); border:1px solid var(--border);
-       border-radius:var(--radius); box-shadow:var(--shadow)}
+.panel{background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow)}
 h2{font-size:clamp(22px,3.5vw,32px); margin:0 0 8px}
 .lead{color:#cfcfcf; margin-top:8px}
-
 .grid{display:grid; gap:18px}
-@media(min-width:880px){
-  .grid-2{grid-template-columns:1.1fr .9fr}
-  .grid-3{grid-template-columns:repeat(3,1fr)}
-}
+@media(min-width:880px){ .grid-2{grid-template-columns:1.1fr .9fr} .grid-3{grid-template-columns:repeat(3,1fr)} }
+
+/* Toolbox */
+.toolbox .tool-h{margin:0 0 10px; font-size:18px; letter-spacing:.02em}
+.tools-grid{display:grid; gap:16px}
+@media(min-width:880px){ .tools-grid{ grid-template-columns:repeat(2,1fr) } }
+.tool-card{padding:18px}
+.chips{display:flex; flex-wrap:wrap; gap:10px}
+.tool{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:12px; border:1px solid var(--border); background: rgba(255,255,255,.04); font-weight:600; font-size:14px; letter-spacing:.01em; transition: transform .15s ease, background .15s ease, border-color .15s ease}
+.tool .logo{width:20px; height:20px; border-radius:6px; display:grid; place-items:center; font-size:11px; font-weight:800; color:#0b0f14; background:#cfeeff; box-shadow: inset 0 0 0 2px rgba(255,255,255,.25)}
+.tool:hover{transform: translateY(-1px); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.20)}
+
+.tool[data-brand="sqlalchemy"] .logo{ background:#e67e22; color:#0b0f14 }
+.tool[data-brand="pydantic"]  .logo{ background:#2a9d8f; color:#fff }
+.tool[data-brand="alembic"]   .logo{ background:#10b981; color:#0b0f14 }
+.tool[data-brand="mysql"]     .logo{ background:#00758f; color:#fff }
+.tool[data-brand="rabbitmq"]  .logo{ background:#ff6600; color:#fff }
+.tool[data-brand="mongodb"]   .logo{ background:#47a248; color:#fff }
+.tool[data-brand="timescale"] .logo{ background:#f59e0b; color:#0b0f14 }
+.tool[data-brand="gh-actions"] .logo{ background:#2da44e; color:#fff }
+.tool[data-brand="traefik"]   .logo{ background:#24a1c1; color:#fff }
+.tool[data-brand="aws"]       .logo{ background:#ff9900; color:#0b0f14 }
+.tool[data-brand="gcp"]       .logo{ background:#4285f4; color:#fff }
+.tool[data-brand="jaeger"]    .logo{ background:#65a30d; color:#fff }
+.tool[data-brand="loki"]      .logo{ background:#4caf50; color:#fff }
+.tool[data-brand="sentry"]    .logo{ background:#fb4226; color:#fff }
+.tool[data-brand="k6"]        .logo{ background:#7e57c2; color:#fff }
+.tool[data-brand="black"]     .logo{ background:#111; color:#fff }
+.tool[data-brand="ruff"]      .logo{ background:#facc15; color:#0b0f14 }
 
 .contact .item{padding:10px 0}
 .muted{color:var(--muted); font-size:13px; letter-spacing:.05em; text-transform:uppercase}
-
 footer{border-top:1px solid var(--border); color:#a8a8a8; font-size:14px}
 .footer-inner{padding:26px 0; display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap}
 
 
-:root{
-  --logo-h: 74px; /* <<< OVDJE MIJENJAŠ VELIČINU LOGA */
-}
-
-.brand img,
-.logo{
-  height: var(--logo-h);
-  width: auto;
-  display: block;
-  border-radius: 10px;
-}
+@media (max-width: 780px){ :root{ --logo-h: 36px } }
 
 @media (max-width: 780px){
-  :root{ --logo-h: 36px; }
+  .hero .container{
+    padding-left: 28px;
+    padding-right: 28px;
+    padding-left: max(28px, env(safe-area-inset-left));
+    padding-right: max(28px, env(safe-area-inset-right));
+  }
 }
-
-/* === Full-screen sections + snap === */
-:root { --nav-h: 64px; } /* will be updated by JS at runtime */
-
-html{
-  /* snap the whole page vertically */
-  scroll-snap-type: y mandatory;
-  /* ensure anchors & wheel scrolling land below the sticky header */
-  scroll-padding-top: var(--nav-h);
-}
-
-/* every main section (including hero) gets its own "screen" */
-.hero,
-main > section{
-  /* fallback first, then safe viewport on modern mobile */
-  min-height: calc(100vh - var(--nav-h));
-  min-height: calc(100svh - var(--nav-h));
-  scroll-snap-align: start;
-}
-
-/* optional: avoid tiny peeks of the next section while snapping */
-main > section { overflow: clip; }
-
-.type{
-  display:inline-block;
-  font-weight:800;
-  position:relative;
-}
-.caret{
-  display:inline-block;
-  width:1ch;            /* keeps layout stable while typing */
-  color:transparent;    /* rely on the border, not text */
-  border-right:2px solid var(--text);
-  animation: blink 1s steps(1) infinite;
-}
-@keyframes blink { 50% { border-color: transparent; } }
-
-@media (prefers-reduced-motion: reduce){
-  .caret{ animation:none; }
-}
-
-
-/* === Toolbox (chips/cards) === */
-.toolbox .tool-h{
-  margin:0 0 10px;
-  font-size:18px;
-  letter-spacing:.02em;
-}
-
-.tools-grid{
-  display:grid;
-  gap:16px;
-}
-@media (min-width: 880px){
-  .tools-grid{ grid-template-columns: repeat(2, 1fr); }
-}
-
-.tool-card{ padding:18px; }
-
-.chips{
-  display:flex; flex-wrap:wrap; gap:10px;
-}
-
-.tool{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:8px 12px; border-radius:12px;
-  border:1px solid var(--border);
-  background: rgba(255,255,255,.04);
-  font-weight:600; font-size:14px; letter-spacing:.01em;
-  transition: transform .15s ease, background .15s ease, border-color .15s ease;
-}
-.tool .logo{
-  width:20px; height:20px; border-radius:6px;
-  display:grid; place-items:center;
-  font-size:11px; font-weight:800; color:#0b0f14;
-  background:#cfeeff;
-  box-shadow: inset 0 0 0 2px rgba(255,255,255,.25);
-}
-.tool:hover{
-  transform: translateY(-1px);
-  background: rgba(255,255,255,.06);
-  border-color: rgba(255,255,255,.20);
-}
-
-/* === Toolbox brand tints (add to the end) === */
-/* (tiny fix from earlier) */
-.tool[data-brand="gh-actions"] .logo{ background:#2da44e; color:#fff; }
-
-/* Backend extras */
-.tool[data-brand="sqlalchemy"] .logo{ background:#e67e22; color:#0b0f14; }
-.tool[data-brand="pydantic"]  .logo{ background:#2a9d8f; color:#fff; }
-.tool[data-brand="alembic"]   .logo{ background:#10b981; color:#0b0f14; }
-
-/* Datastores & brokers */
-.tool[data-brand="mysql"]     .logo{ background:#00758f; color:#fff; }
-.tool[data-brand="rabbitmq"]  .logo{ background:#ff6600; color:#fff; }
-.tool[data-brand="mongodb"]   .logo{ background:#47a248; color:#fff; }
-.tool[data-brand="timescale"] .logo{ background:#f59e0b; color:#0b0f14; }
-
-/* DevOps & cloud */
-.tool[data-brand="gitlabci"]  .logo{ background:#fc6d26; color:#fff; }
-.tool[data-brand="ansible"]   .logo{ background:#ee0000; color:#fff; }
-.tool[data-brand="traefik"]   .logo{ background:#24a1c1; color:#fff; }
-.tool[data-brand="aws"]       .logo{ background:#ff9900; color:#0b0f14; }
-.tool[data-brand="gcp"]       .logo{ background:#4285f4; color:#fff; }
-.tool[data-brand="azure"]     .logo{ background:#0078d4; color:#fff; }
-
-/* Observability & quality */
-.tool[data-brand="jaeger"]    .logo{ background:#65a30d; color:#fff; }
-.tool[data-brand="loki"]      .logo{ background:#4caf50; color:#fff; }
-.tool[data-brand="sentry"]    .logo{ background:#fb4226; color:#fff; }
-.tool[data-brand="k6"]        .logo{ background:#7e57c2; color:#fff; }
-.tool[data-brand="locust"]    .logo{ background:#2ecc71; color:#0b0f14; }
-.tool[data-brand="black"]     .logo{ background:#111; color:#fff; }
-.tool[data-brand="ruff"]      .logo{ background:#facc15; color:#0b0f14; }
-
-/* APIs & protocols */
-.tool[data-brand="graphql"]   .logo{ background:#e10098; color:#fff; }
-.tool[data-brand="grpc"]      .logo{ background:#49a942; color:#fff; }
-.tool[data-brand="websocket"] .logo{ background:#06b6d4; color:#0b0f14; }
-.tool[data-brand="openapi"]   .logo{ background:#6ba539; color:#fff; }
-.tool[data-brand="asyncapi"]  .logo{ background:#22c55e; color:#0b0f14; }
-
-/* Orchestration */
-.tool[data-brand="airflow"]   .logo{ background:#017cee; color:#fff; }
-.tool[data-brand="dbt"]       .logo{ background:#ff694b; color:#fff; }
-.tool[data-brand="prefect"]   .logo{ background:#1155cb; color:#fff; }
-.tool[data-brand="spark"]     .logo{ background:#e25a1c; color:#fff; }
-
-/* Search & analytics */
-.tool[data-brand="elastic"]    .logo{ background:#005571; color:#fff; }
-.tool[data-brand="opensearch"] .logo{ background:#3b82f6; color:#fff; }
-.tool[data-brand="clickhouse"] .logo{ background:#fdee00; color:#0b0f14; }
-.tool[data-brand="metabase"]   .logo{ background:#1a73e8; color:#fff; }
-
-/* Serverless & edge */
-.tool[data-brand="lambda"]    .logo{ background:#ff9900; color:#0b0f14; }
-.tool[data-brand="cloudrun"]  .logo{ background:#4285f4; color:#fff; }
-.tool[data-brand="gcf"]       .logo{ background:#f4b400; color:#0b0f14; }
-.tool[data-brand="workers"]   .logo{ background:#f38020; color:#0b0f14; }
