@@ -10,13 +10,13 @@
   <link rel="icon" href="assets/logo.png" />
 </head>
 <body>
-
+  <canvas id="bg-particles" class="bg-particles" aria-hidden="true"></canvas>
   <header class="nav">
     <div class="container nav-inner">
-      <div class="brand">
+      <a class="brand" href="#home" aria-label="Python Dev Center (PDC) — Home">
         <img src="assets/logo.png" alt="PDC logo" class="logo" />
         <span>Python Dev Center (PDC)</span>
-      </div>
+      </a>
 
       <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
 
@@ -24,8 +24,10 @@
         <nav id="nav-links" class="nav-links" aria-label="Main navigation">
           <a href="#about">About</a>
           <a href="#services">Services</a>
+          <a href="#toolbox">Toolbox</a>
           <a href="#contact">Contact</a>
-          <a href="https://www.linkedin.com/company/python-dev-center-pdc/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="https://www.linkedin.com/company/python-dev-center-pdc/" target="_blank"
+            rel="noreferrer">LinkedIn</a>
         </nav>
         <div class="lang-switch" aria-label="Language">
           <a class="lang-link" href="pdc_sr.html">SR</a>
@@ -37,15 +39,27 @@
 
   <main>
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero" id="home">
       <div class="container hero-wrap">
         <span class="btn" style="padding:6px 10px;border-radius:999px">Reliable systems</span>
-        <h1>We build scalable <span class="accent">Python</span> platforms</h1>
-        <p>Seasoned engineers with long-standing experience in architecture, development, integrations, and software delivery.
-          We move fast and deliver quality.</p>
+
+        <!-- Typewriter headline -->
+        <h1>
+          We build
+          <span class="type">
+            <span id="word" class="accent" aria-live="polite" aria-atomic="true">scalable</span>
+            <span class="caret" aria-hidden="true">&nbsp;</span>
+          </span>
+          Python platforms
+        </h1>
+
+        <p>Seasoned engineers with long-standing experience in architecture, development, integrations, and software
+          delivery.</p>
+
         <div style="margin-top:22px; display:flex; gap:10px; flex-wrap:wrap">
           <a class="btn primary" href="#contact">Contact us</a>
-          <a class="btn" href="https://www.linkedin.com/company/python-dev-center-pdc/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn" href="https://www.linkedin.com/company/python-dev-center-pdc/" target="_blank"
+            rel="noreferrer">LinkedIn</a>
         </div>
       </div>
     </section>
@@ -97,6 +111,128 @@
       </div>
     </section>
 
+    <!-- TOOLBOX -->
+    <section id="toolbox" class="toolbox" aria-labelledby="toolbox-title">
+      <div class="container">
+        <h2 id="toolbox-title">Our Toolbox</h2>
+        <p class="lead">Pragmatic, proven technologies—kept lean so your systems stay fast, secure, and maintainable.
+        </p>
+
+        <div class="tools-grid" style="margin-top:16px">
+          <!-- Backend -->
+          <div class="panel tool-card">
+            <h3 class="tool-h">Backend</h3>
+            <div class="chips">
+              <span class="tool" data-brand="python"><span class="logo">Py</span>Python</span>
+              <span class="tool" data-brand="fastapi"><span class="logo">FA</span>FastAPI</span>
+              <span class="tool" data-brand="django"><span class="logo">Dj</span>Django</span>
+              <span class="tool" data-brand="asyncio"><span class="logo">A</span>AsyncIO</span>
+              <span class="tool" data-brand="celery"><span class="logo">Ce</span>Celery</span>
+              <span class="tool" data-brand="sqlalchemy"><span class="logo">SA</span>SQLAlchemy</span>
+              <span class="tool" data-brand="pydantic"><span class="logo">Pd</span>Pydantic</span>
+              <span class="tool" data-brand="alembic"><span class="logo">Al</span>Alembic</span>
+            </div>
+          </div>
+
+          <!-- Data & Messaging -->
+          <div class="panel tool-card">
+            <h3 class="tool-h">Data & Messaging</h3>
+            <div class="chips">
+              <span class="tool" data-brand="postgres"><span class="logo">Pg</span>PostgreSQL</span>
+              <span class="tool" data-brand="mysql"><span class="logo">My</span>MySQL</span>
+              <span class="tool" data-brand="redis"><span class="logo">R</span>Redis</span>
+              <span class="tool" data-brand="kafka"><span class="logo">Kf</span>Apache Kafka</span>
+              <span class="tool" data-brand="rabbitmq"><span class="logo">Rb</span>RabbitMQ</span>
+              <span class="tool" data-brand="mongodb"><span class="logo">Mg</span>MongoDB</span>
+              <span class="tool" data-brand="timescale"><span class="logo">Ts</span>TimescaleDB</span>
+            </div>
+          </div>
+
+          <!-- DevOps & Cloud -->
+          <div class="panel tool-card">
+            <h3 class="tool-h">DevOps & Cloud</h3>
+            <div class="chips">
+              <span class="tool" data-brand="docker"><span class="logo">Dk</span>Docker</span>
+              <span class="tool" data-brand="k8s"><span class="logo">K8</span>Kubernetes</span>
+              <span class="tool" data-brand="terraform"><span class="logo">Tf</span>Terraform</span>
+              <span class="tool" data-brand="gh-actions"><span class="logo">GA</span>GitHub Actions</span>
+              <span class="tool" data-brand="gitlabci"><span class="logo">GL</span>GitLab CI</span>
+              <span class="tool" data-brand="ansible"><span class="logo">An</span>Ansible</span>
+              <span class="tool" data-brand="nginx"><span class="logo">Nx</span>Nginx</span>
+              <span class="tool" data-brand="traefik"><span class="logo">Tr</span>Traefik</span>
+              <span class="tool" data-brand="aws"><span class="logo">AWS</span>AWS</span>
+              <span class="tool" data-brand="gcp"><span class="logo">GCP</span>GCP</span>
+              <span class="tool" data-brand="azure"><span class="logo">Az</span>Azure</span>
+            </div>
+          </div>
+
+          <!-- Observability & Quality -->
+          <div class="panel tool-card">
+            <h3 class="tool-h">Observability & Quality</h3>
+            <div class="chips">
+              <span class="tool" data-brand="prometheus"><span class="logo">Pr</span>Prometheus</span>
+              <span class="tool" data-brand="grafana"><span class="logo">Gr</span>Grafana</span>
+              <span class="tool" data-brand="otel"><span class="logo">OT</span>OpenTelemetry</span>
+              <span class="tool" data-brand="jaeger"><span class="logo">Jg</span>Jaeger</span>
+              <span class="tool" data-brand="loki"><span class="logo">Lk</span>Loki</span>
+              <span class="tool" data-brand="sentry"><span class="logo">Se</span>Sentry</span>
+              <span class="tool" data-brand="pytest"><span class="logo">Pt</span>PyTest</span>
+              <span class="tool" data-brand="k6"><span class="logo">k6</span>k6</span>
+              <span class="tool" data-brand="locust"><span class="logo">Lc</span>Locust</span>
+              <span class="tool" data-brand="black"><span class="logo">B</span>Black</span>
+              <span class="tool" data-brand="ruff"><span class="logo">Rf</span>Ruff</span>
+            </div>
+          </div>
+
+          <!-- APIs & Protocols -->
+          <div class="panel tool-card">
+            <h3 class="tool-h">APIs & Protocols</h3>
+            <div class="chips">
+              <span class="tool" data-brand="rest"><span class="logo">R</span>REST</span>
+              <span class="tool" data-brand="openapi"><span class="logo">OA</span>OpenAPI</span>
+              <span class="tool" data-brand="asyncapi"><span class="logo">AA</span>AsyncAPI</span>
+              <span class="tool" data-brand="graphql"><span class="logo">GQ</span>GraphQL</span>
+              <span class="tool" data-brand="grpc"><span class="logo">gR</span>gRPC</span>
+              <span class="tool" data-brand="websocket"><span class="logo">WS</span>WebSockets</span>
+            </div>
+          </div>
+
+          <!-- Orchestration & Workflow -->
+          <div class="panel tool-card">
+            <h3 class="tool-h">Orchestration & Workflow</h3>
+            <div class="chips">
+              <span class="tool" data-brand="airflow"><span class="logo">Af</span>Airflow</span>
+              <span class="tool" data-brand="dbt"><span class="logo">db</span>dbt</span>
+              <span class="tool" data-brand="prefect"><span class="logo">Pf</span>Prefect</span>
+              <span class="tool" data-brand="spark"><span class="logo">Sp</span>Apache Spark</span>
+            </div>
+          </div>
+
+          <!-- Search & Analytics -->
+          <div class="panel tool-card">
+            <h3 class="tool-h">Search & Analytics</h3>
+            <div class="chips">
+              <span class="tool" data-brand="elastic"><span class="logo">ES</span>Elasticsearch</span>
+              <span class="tool" data-brand="opensearch"><span class="logo">OS</span>OpenSearch</span>
+              <span class="tool" data-brand="clickhouse"><span class="logo">CH</span>ClickHouse</span>
+              <span class="tool" data-brand="metabase"><span class="logo">Mb</span>Metabase</span>
+            </div>
+          </div>
+
+          <!-- Serverless & Edge -->
+          <div class="panel tool-card">
+            <h3 class="tool-h">Serverless & Edge</h3>
+            <div class="chips">
+              <span class="tool" data-brand="lambda"><span class="logo">Λ</span>AWS Lambda</span>
+              <span class="tool" data-brand="cloudrun"><span class="logo">CR</span>Cloud Run</span>
+              <span class="tool" data-brand="gcf"><span class="logo">CF</span>Cloud Functions</span>
+              <span class="tool" data-brand="workers"><span class="logo">CW</span>Cloudflare Workers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CONTACT -->
     <section id="contact" class="contact">
       <div class="container">
@@ -117,7 +253,8 @@
             </div>
           </div>
           <div style="margin-top:10px; font-size:14px; color:#aeb0b4">
-            LinkedIn: <a style="text-decoration:underline" target="_blank" rel="noreferrer" href="https://www.linkedin.com/company/python-dev-center-pdc/">python-dev-center-pdc</a>
+            LinkedIn: <a style="text-decoration:underline" target="_blank" rel="noreferrer"
+              href="https://www.linkedin.com/company/python-dev-center-pdc/">python-dev-center-pdc</a>
           </div>
         </div>
       </div>
@@ -137,4 +274,5 @@
 
   <script src="app.js" defer></script>
 </body>
+
 </html>
