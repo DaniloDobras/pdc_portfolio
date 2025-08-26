@@ -259,6 +259,31 @@ main > section { overflow: clip; }
 .tool[data-brand="gcf"]       .logo{ background:#f4b400; color:#0b0f14; }
 .tool[data-brand="workers"]   .logo{ background:#f38020; color:#0b0f14; }
 
+/* AI & LLM */
+.tool[data-brand="pytorch"]        .logo{ background:#ee4c2c; color:#fff; }
+.tool[data-brand="huggingface"]    .logo{ background:#ffcc4d; color:#0b0f14; }
+.tool[data-brand="transformers"]   .logo{ background:#ffcc4d; color:#0b0f14; }
+.tool[data-brand="langchain"]      .logo{ background:#10b981; color:#0b0f14; }
+.tool[data-brand="openai"]         .logo{ background:#111;    color:#fff; }
+.tool[data-brand="gemini"]         .logo{ background:#6366f1; color:#fff; }
+.tool[data-brand="midjourney"]     .logo{ background:#1f2937; color:#fff; }
+.tool[data-brand="leonardo"]       .logo{ background:#6b7280; color:#fff; }
+
+/* Techniques */
+.tool[data-brand="rag"]            .logo{ background:#06b6d4; color:#0b0f14; }
+.tool[data-brand="function-calling"].logo{ background:#0ea5e9; color:#0b0f14; }
+.tool[data-brand="fine-tuning"]    .logo{ background:#f97316; color:#fff; }
+.tool[data-brand="peft"]           .logo{ background:#8b5cf6; color:#fff; }
+.tool[data-brand="rlhf"]           .logo{ background:#f59e0b; color:#0b0f14; }
+.tool[data-brand="training"]       .logo{ background:#22c55e; color:#0b0f14; }
+
+/* MLOps & Eval */
+.tool[data-brand="wandb"]          .logo{ background:#f2b01e; color:#0b0f14; }
+.tool[data-brand="langfuse"]       .logo{ background:#7c3aed; color:#fff; }
+.tool[data-brand="deepgram"]       .logo{ background:#e11d48; color:#fff; }
+.tool[data-brand="gradio"]         .logo{ background:#16a34a; color:#fff; }
+
+
 .hero .container{
     padding-left: 28px;
     padding-right: 28px;
@@ -297,14 +322,21 @@ main > section { overflow: clip; }
 }
 @media (max-width: 900px) { .client-logos { justify-content: center; } }
 
-.client-logos li { line-height: 0; }
-.client-logos img {
-  height: var(--logo-h);
-  max-width: 180px;
+.client-logos li{
+  width: 180px;          /* tweak to taste */
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* fit logo inside the slot */
+.client-logos img{
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
-  filter: none;   /* keeps it simple and cohesive */
-  opacity: .95;
-  transition: filter .15s ease, opacity .15s ease, transform .15s ease;
+  transform: scale(var(--scale, 1));   /* optional per-logo tweak */
+  transform-origin: center;
 }
 .client-logos img:hover {
   filter: none;
@@ -338,7 +370,7 @@ main > section { overflow: clip; }
 .client-logos li { line-height: 0; }
 .client-logos img {
   height: var(--logo-h);
-  max-width: 180px;
+  max-width: 200px;
   object-fit: contain;
   filter: none;
   opacity: .95;
