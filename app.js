@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setNavHeightVar();
   window.addEventListener("resize", setNavHeightVar);
 
-  const btn   = document.getElementById("nav-toggle");
+  const btn = document.getElementById("nav-toggle");
   const links = document.getElementById("nav-links");
 
   const closeMenu = () => {
@@ -49,19 +49,47 @@ document.addEventListener("DOMContentLoaded", () => {
       : ["scalable", "reliable", "secure", "observable"];
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!reduce) {
-      let i = 0, j = 0, deleting = false;
-      (function tick(){
-        const target = words[i];
-        el.textContent = deleting ? target.slice(0, j--) : target.slice(0, j++);
-        if (!deleting && j > target.length + 6) deleting = true;
-        else if (deleting && j < 0) { deleting = false; i = (i + 1) % words.length; }
-        setTimeout(tick, deleting ? 60 : 90);
-      })();
-    } else {
+
+    if (reduce) {
       el.textContent = words[0];
+      return;
     }
+
+    // prevent the initial flash of a full word
+    el.textContent = "";
+
+    let i = 0;   // which word
+    let j = 0;   // how many chars shown
+    let deleting = false;
+
+    const TYPING_MS = 90;
+    const DELETING_MS = 60;
+    const PAUSE_MS = 600;
+
+    function tick() {
+      const target = words[i];
+
+      if (!deleting && j < target.length) {
+        j++; // type
+      } else if (!deleting && j === target.length) {
+        // pause at full word
+        return setTimeout(() => { deleting = true; tick(); }, PAUSE_MS);
+      } else if (deleting && j > 0) {
+        j--; // delete
+      } else if (deleting && j === 0) {
+        // move to next word
+        deleting = false;
+        i = (i + 1) % words.length;
+      }
+
+      el.textContent = target.slice(0, j);
+      setTimeout(tick, deleting ? DELETING_MS : TYPING_MS);
+    }
+
+    // start on the next frame to avoid flicker
+    requestAnimationFrame(tick);
   }
+
 
   const canvas = document.getElementById("bg-particles");
   if (canvas) {
@@ -84,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const area = vw * vh;
       const count = Math.max(60, Math.min(MOBILE ? 90 : 140, Math.floor(area / (MOBILE ? 14000 : 9000))));
-      particles = Array.from({length: count}).map(() => ({
+      particles = Array.from({ length: count }).map(() => ({
         x: Math.random() * vw,
         y: Math.random() * vh,
         vx: (Math.random() - 0.5) * 0.35,
@@ -99,21 +127,21 @@ document.addEventListener("DOMContentLoaded", () => {
       const g = ctx.createRadialGradient(vw * 0.82, vh * 0.12, 0, vw * 0.82, vh * 0.12, Math.max(vw, vh) * 0.9);
       g.addColorStop(0, "rgba(56,189,248,0.14)");
       g.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.fillStyle = g; ctx.fillRect(0,0,vw,vh);
+      ctx.fillStyle = g; ctx.fillRect(0, 0, vw, vh);
 
       ctx.fillStyle = "#cfeeff";
       particles.forEach(p => {
         p.x += p.vx; p.y += p.vy;
         if (p.x < 0 || p.x > vw) p.vx *= -1;
         if (p.y < 0 || p.y > vh) p.vy *= -1;
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
       });
 
       requestAnimationFrame(step);
     }
 
     size();
-    window.addEventListener("resize", () => { dpr = Math.min(window.devicePixelRatio || 1, 2); size(); }, { passive:true });
+    window.addEventListener("resize", () => { dpr = Math.min(window.devicePixelRatio || 1, 2); size(); }, { passive: true });
     requestAnimationFrame(step);
   }
 });
