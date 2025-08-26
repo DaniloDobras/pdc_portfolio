@@ -116,10 +116,236 @@ footer{border-top:1px solid var(--border); color:#a8a8a8; font-size:14px}
 @media (max-width: 780px){ :root{ --logo-h: 36px } }
 
 @media (max-width: 780px){
-  .hero .container{
+  :root{ --logo-h: 36px; }
+}
+
+/* === Full-screen sections + snap === */
+:root { --nav-h: 64px; } /* will be updated by JS at runtime */
+
+html{
+  /* snap the whole page vertically */
+  scroll-snap-type: y mandatory;
+  /* ensure anchors & wheel scrolling land below the sticky header */
+  scroll-padding-top: var(--nav-h);
+}
+
+/* every main section (including hero) gets its own "screen" */
+.hero,
+main > section{
+  /* fallback first, then safe viewport on modern mobile */
+  min-height: calc(100vh - var(--nav-h));
+  min-height: calc(100svh - var(--nav-h));
+  scroll-snap-align: start;
+}
+
+/* optional: avoid tiny peeks of the next section while snapping */
+main > section { overflow: clip; }
+
+.type{
+  display:inline-block;
+  font-weight:800;
+  position:relative;
+}
+.caret{
+  display:inline-block;
+  width:1ch;            /* keeps layout stable while typing */
+  color:transparent;    /* rely on the border, not text */
+  border-right:2px solid var(--text);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { border-color: transparent; } }
+
+@media (prefers-reduced-motion: reduce){
+  .caret{ animation:none; }
+}
+
+
+/* === Toolbox (chips/cards) === */
+.toolbox .tool-h{
+  margin:0 0 10px;
+  font-size:18px;
+  letter-spacing:.02em;
+}
+
+.tools-grid{
+  display:grid;
+  gap:16px;
+}
+@media (min-width: 880px){
+  .tools-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+
+.tool-card{ padding:18px; }
+
+.chips{
+  display:flex; flex-wrap:wrap; gap:10px;
+}
+
+.tool{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:8px 12px; border-radius:12px;
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.04);
+  font-weight:600; font-size:14px; letter-spacing:.01em;
+  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+}
+.tool .logo{
+  width:20px; height:20px; border-radius:6px;
+  display:grid; place-items:center;
+  font-size:11px; font-weight:800; color:#0b0f14;
+  background:#cfeeff;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.25);
+}
+.tool:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.20);
+}
+
+/* === Toolbox brand tints (add to the end) === */
+/* (tiny fix from earlier) */
+.tool[data-brand="gh-actions"] .logo{ background:#2da44e; color:#fff; }
+
+/* Backend extras */
+.tool[data-brand="sqlalchemy"] .logo{ background:#e67e22; color:#0b0f14; }
+.tool[data-brand="pydantic"]  .logo{ background:#2a9d8f; color:#fff; }
+.tool[data-brand="alembic"]   .logo{ background:#10b981; color:#0b0f14; }
+
+/* Datastores & brokers */
+.tool[data-brand="mysql"]     .logo{ background:#00758f; color:#fff; }
+.tool[data-brand="rabbitmq"]  .logo{ background:#ff6600; color:#fff; }
+.tool[data-brand="mongodb"]   .logo{ background:#47a248; color:#fff; }
+.tool[data-brand="timescale"] .logo{ background:#f59e0b; color:#0b0f14; }
+
+/* DevOps & cloud */
+.tool[data-brand="gitlabci"]  .logo{ background:#fc6d26; color:#fff; }
+.tool[data-brand="ansible"]   .logo{ background:#ee0000; color:#fff; }
+.tool[data-brand="traefik"]   .logo{ background:#24a1c1; color:#fff; }
+.tool[data-brand="aws"]       .logo{ background:#ff9900; color:#0b0f14; }
+.tool[data-brand="gcp"]       .logo{ background:#4285f4; color:#fff; }
+.tool[data-brand="azure"]     .logo{ background:#0078d4; color:#fff; }
+
+/* Observability & quality */
+.tool[data-brand="jaeger"]    .logo{ background:#65a30d; color:#fff; }
+.tool[data-brand="loki"]      .logo{ background:#4caf50; color:#fff; }
+.tool[data-brand="sentry"]    .logo{ background:#fb4226; color:#fff; }
+.tool[data-brand="k6"]        .logo{ background:#7e57c2; color:#fff; }
+.tool[data-brand="locust"]    .logo{ background:#2ecc71; color:#0b0f14; }
+.tool[data-brand="black"]     .logo{ background:#111; color:#fff; }
+.tool[data-brand="ruff"]      .logo{ background:#facc15; color:#0b0f14; }
+
+/* APIs & protocols */
+.tool[data-brand="graphql"]   .logo{ background:#e10098; color:#fff; }
+.tool[data-brand="grpc"]      .logo{ background:#49a942; color:#fff; }
+.tool[data-brand="websocket"] .logo{ background:#06b6d4; color:#0b0f14; }
+.tool[data-brand="openapi"]   .logo{ background:#6ba539; color:#fff; }
+.tool[data-brand="asyncapi"]  .logo{ background:#22c55e; color:#0b0f14; }
+
+/* Orchestration */
+.tool[data-brand="airflow"]   .logo{ background:#017cee; color:#fff; }
+.tool[data-brand="dbt"]       .logo{ background:#ff694b; color:#fff; }
+.tool[data-brand="prefect"]   .logo{ background:#1155cb; color:#fff; }
+.tool[data-brand="spark"]     .logo{ background:#e25a1c; color:#fff; }
+
+/* Search & analytics */
+.tool[data-brand="elastic"]    .logo{ background:#005571; color:#fff; }
+.tool[data-brand="opensearch"] .logo{ background:#3b82f6; color:#fff; }
+.tool[data-brand="clickhouse"] .logo{ background:#fdee00; color:#0b0f14; }
+.tool[data-brand="metabase"]   .logo{ background:#1a73e8; color:#fff; }
+
+/* Serverless & edge */
+.tool[data-brand="lambda"]    .logo{ background:#ff9900; color:#0b0f14; }
+.tool[data-brand="cloudrun"]  .logo{ background:#4285f4; color:#fff; }
+.tool[data-brand="gcf"]       .logo{ background:#f4b400; color:#0b0f14; }
+.tool[data-brand="workers"]   .logo{ background:#f38020; color:#0b0f14; }
+
+.hero .container{
     padding-left: 28px;
     padding-right: 28px;
     padding-left: max(28px, env(safe-area-inset-left));
     padding-right: max(28px, env(safe-area-inset-right));
   }
+
+.clients-band {
+  background: #111418;
+  color: var(--text, #e8ecf1);
+  padding: clamp(1.75rem, 4vw, 3rem) 0;
 }
+.clients-band .container {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+}
+.clients-band h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.6rem, 2.2vw, 2rem);
+  letter-spacing: .2px;
+}
+
+/* Logos row */
+.client-logos {
+  --gap: clamp(18px, 5vw, 64px);
+  --logo-h: clamp(28px, 5vw, 52px);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--gap);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+@media (max-width: 900px) { .client-logos { justify-content: center; } }
+
+.client-logos li { line-height: 0; }
+.client-logos img {
+  height: var(--logo-h);
+  max-width: 180px;
+  object-fit: contain;
+  filter: none;   /* keeps it simple and cohesive */
+  opacity: .95;
+  transition: filter .15s ease, opacity .15s ease, transform .15s ease;
+}
+.client-logos img:hover {
+  filter: none;
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+/* If you want “all-white” marks on the dark band, add class="mono" to <ul>.
+   Use .keep-brand on any logo that should stay in brand color (e.g., Amex blue). */
+.client-logos.mono img { filter: brightness(0) invert(1) contrast(1.1); opacity: 1; }
+.client-logos img.keep-brand { filter: none !important; }
+
+/* Equal columns per row (change numbers as you like) */
+.client-logos.grid {
+  --gap: clamp(18px, 5vw, 64px);
+  --logo-h: clamp(28px, 5vw, 52px);
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);   /* 5 per row on desktop */
+  gap: var(--gap);
+  align-items: center;
+  justify-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+@media (max-width: 1100px) { .client-logos.grid { grid-template-columns: repeat(4, 1fr); } } /* 4 per row */
+@media (max-width: 700px)  { .client-logos.grid { grid-template-columns: repeat(3, 1fr); } } /* 3 per row */
+@media (max-width: 480px)  { .client-logos.grid { grid-template-columns: repeat(2, 1fr); } } /* 2 per row */
+
+.client-logos li { line-height: 0; }
+.client-logos img {
+  height: var(--logo-h);
+  max-width: 180px;
+  object-fit: contain;
+  filter: none;
+  opacity: .95;
+  transition: filter .15s ease, opacity .15s ease, transform .15s ease;
+}
+.client-logos img:hover { filter: none; opacity: 1; transform: translateY(-1px); }
+
+/* Optional “all-white” look */
+.client-logos.mono img { filter: brightness(0) invert(1) contrast(1.1); opacity: 1; }
+.client-logos img.keep-brand { filter: none !important; }
