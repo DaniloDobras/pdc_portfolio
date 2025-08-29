@@ -381,3 +381,64 @@ main > section { overflow: clip; }
 /* Optional “all-white” look */
 .client-logos.mono img { filter: brightness(0) invert(1) contrast(1.1); opacity: 1; }
 .client-logos img.keep-brand { filter: none !important; }
+
+
+/* === OUR WORK (carousel) === */
+.work .work-head{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+.work-controls{ display:flex; gap:8px; }
+.work-btn{
+  width:40px; height:40px; border-radius:10px; border:1px solid var(--border);
+  background:var(--panel); color:#fff; cursor:pointer; font-size:22px; line-height:1;
+}
+.work-btn:hover{ border-color:rgba(255,255,255,.2); background:rgba(255,255,255,.06); }
+
+.work-viewport{
+  --gap:16px; 
+  --per:3;      
+  margin-top:14px; 
+  overflow:auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom:6px;       
+}
+@media (max-width: 900px){ .work-viewport{ --per:2; } }  
+@media (max-width: 600px){ .work-viewport{ --per:1; } }  
+
+.work-track{
+  display:flex; gap:var(--gap);
+  padding:2px;
+}
+
+.work-card{
+  flex: 0 0 calc( (100% - (var(--per) - 1)*var(--gap)) / var(--per) );
+  scroll-snap-align: start;
+  background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); 
+  box-shadow:var(--shadow);
+  padding:16px;
+  display:flex; flex-direction:column; gap:10px;
+}
+.work-card .logo-wrap{
+  display:flex; align-items:center; justify-content:center;
+  height:72px; padding:6px; border-radius:12px; background:rgba(255,255,255,.02);
+  border:1px dashed rgba(255,255,255,.08);
+}
+.work-card img{
+  max-height:52px; width:auto; object-fit:contain; display:block;
+  filter:none; opacity:.95; transition:opacity .15s ease, transform .15s ease;
+}
+.work-card img:hover{ opacity:1; transform:translateY(-1px); }
+
+.work-card h3{ margin:4px 0 0; font-size:16px; }
+.work-card p{ margin:0; color:#cfcfcf; font-size:14px; line-height:1.5; }
+
+
+
+.work-viewport{
+  -ms-overflow-style: none;   
+  scrollbar-width: none;   
+}
+.work-viewport::-webkit-scrollbar{
+  display: none;  
+}
