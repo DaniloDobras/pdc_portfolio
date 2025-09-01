@@ -137,12 +137,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 // ===== OUR WORK: build 12 cards + responsive carousel behavior (EN/SR desc)
+// ===== OUR WORK: 2-row slides (6/4/2 per page) + EN/SR desc =====
 const track = document.getElementById("work-track");
 const viewport = document.querySelector(".work-viewport");
 const prevBtn = document.querySelector(".work-prev");
 const nextBtn = document.querySelector(".work-next");
 
 if (track && viewport && prevBtn && nextBtn) {
+  // detekcija jezika
   const docLang = (document.documentElement.lang || "").toLowerCase();
   const path = (location.pathname || "").toLowerCase();
   const isSr =
@@ -152,6 +154,7 @@ if (track && viewport && prevBtn && nextBtn) {
     path.endsWith("/sr.html") ||
     /(^|\/)pdc_sr\.html$/.test(path);
 
+  // projekti
   const projects = [
     {
       logo: "assets/bmll.png",
@@ -159,151 +162,174 @@ if (track && viewport && prevBtn && nextBtn) {
       desc_en:
         "Processing worldwide stock exchanges data and building system for universal Quote and LOB snapshots reconstruction, parsers for Nasdaq, Moscow, London, Madrid and other stock exchanges",
       desc_sr:
-        "Obrada podataka sa svjetskih berzi i izgradnja sistema za univerzalnu rekonstrukciju Quote i LOB snimaka, parseri za Nasdaq, Moskvu, London, Madrid i druge berze."
+        "Obrada podataka sa svjetskih berzi i sistem za univerzalnu rekonstrukciju Quote/LOB snimaka; parseri za Nasdaq, Moskvu, London, Madrid i druge."
     },
     {
       logo: "assets/gemini.png",
       title: "Gemini",
       desc_en:
-        "Created graphical visualizations using matplotlib, providing data-driven insights through various charts and plots. Developed workflows for generating customized data reports in different formats. Training, evaluation and fine-tuning of open-source and frontier models",
+        "Matplotlib visualizations, custom report workflows, and training/evaluation/fine-tuning of open-source and frontier models.",
       desc_sr:
-        "Izrada grafičkih vizualizacija (matplotlib) i analitika kroz različite grafikone. Workflow-i za prilagođene izvještaje u više formata. Trening, evaluacija i fino podešavanje open-source i frontier modela."
+        "Matplotlib vizualizacije, workflow-i za izvještaje i trening/evaluacija/fino podešavanje open-source i frontier modela."
     },
     {
       logo: "assets/insomniac.png",
       title: "Insomniac",
-      desc_en:
-        "Centralised repository of global company-level greenhouse gas emissions data",
-      desc_sr:
-        "Centralizovano skladište podataka o emisijama GHG na nivou kompanija, globalno."
+      desc_en: "Centralised repository of global company-level greenhouse gas emissions data.",
+      desc_sr: "Centralizovano skladište GHG podataka na nivou kompanija, globalno."
     },
     {
       logo: "assets/galileo.svg",
       title: "Galileo.ai",
-      desc_en:
-        "AI integration support, automated RAG workflows, contribution to Galileo metrics and supporting NLP tasks",
-      desc_sr:
-        "Podrška za AI integracije, automatizovani RAG workflow-i, doprinos Galileo metrikama i prateći NLP zadaci."
+      desc_en: "AI integration support, automated RAG workflows, Galileo metrics and NLP tasks.",
+      desc_sr: "AI integracije, automatizovani RAG workflow-i, Galileo metrike i NLP zadaci."
     },
     {
       logo: "assets/bonfanti.png",
       title: "Bonfanti",
       desc_en:
-        "Automated handling warehouses. Software for crane manipulation. Architecture setup from scratch, microservices, Kafka integration using different protocols for communication with PLCs (OPC UA).",
+        "Automated warehouses; crane control software; microservices + Kafka; PLC communication (OPC UA).",
       desc_sr:
-        "Automatizovana manipulacija skladištima. Softver za upravljanje kranovima. Arhitektura od nule: mikroservisi, Kafka, integracija i komunikacija sa PLC-evima (OPC UA)."
+        "Automatizovana skladišta; softver za kranove; mikroservisi + Kafka; komunikacija sa PLC-evima (OPC UA)."
     },
     {
       logo: "assets/american-express.png",
       title: "Amex - Resy",
       desc_en:
-        "Resy is a large-scale platform for restaurant discovery and reservations, available via mobile/web apps and venue management tools.",
+        "Large-scale restaurant discovery & reservations across mobile/web and venue tools.",
       desc_sr:
-        "Resy je platforma velikih razmjera za pronalazak restorana i rezervacije, kroz mobilne/web aplikacije i alate za upravljanje objektima."
+        "Platforma velikih razmjera za pronalazak restorana i rezervacije (mobilne/web aplikacije, alati za objekte)."
     },
     {
       logo: "assets/audi.png",
       title: "Audi",
       desc_en:
-        "Preparing structures for automotive integration, zFAS, Audi autonomous driving, autonomy level 3",
+        "Automotive integration structures, zFAS, autonomous driving (level 3).",
       desc_sr:
-        "Priprema struktura za automobilsku integraciju, zFAS, autonomna vožnja Audi, nivo autonomije 3."
+        "Strukture za automobilsku integraciju, zFAS, autonomna vožnja (nivo 3)."
     },
     {
       logo: "assets/hm.png",
       title: "H&M",
       desc_en:
-        "Improve global sales by 12% and reduce stockpiling. Dynamic allocation of items to stores based on sales and attributes. Large-scale, country-based processing.",
+        "Improve global sales by 12% and reduce stockpiling; dynamic store allocation; country-scale processing.",
       desc_sr:
-        "Povećanje globalne prodaje za 12% i smanjenje zaliha. Dinamička alokacija artikala po prodavnicama na osnovu prodaje i atributa. Projekat velikih razmjera po zemljama."
+        "Povećanje globalne prodaje za 12% i smanjenje zaliha; dinamička alokacija; obrada na nivou zemalja."
     },
     {
       logo: "assets/delta.svg",
       title: "DELTA AIRLINES",
       desc_en:
-        "Flight schedule optimisation algorithm; reduce delay time; support in critical situations (sudden outages at airports, aircraft etc.).",
+        "Flight schedule optimisation; reduce delays; support critical outage scenarios.",
       desc_sr:
-        "Algoritam za optimizaciju rasporeda letova; smanjenje kašnjenja i podrška u kritičnim situacijama (iznenadni kvarovi na aerodromima, avionima itd.)."
+        "Optimizacija rasporeda letova; smanjenje kašnjenja; podrška u kritičnim scenarijima."
     },
     {
       logo: "assets/universal-music-group.png",
       title: "Universal music group",
       desc_en:
-        "Alpha project: Jira for Artists with to-do lists, releases for songs/albums, concert scheduling.",
+        "Alpha: Jira for Artists (to-dos, releases, concert scheduling).",
       desc_sr:
-        "Alpha projekat: Jira za muzičare sa to-do listama, objavama pjesama i albuma, zakazivanjem koncerata."
+        "Alpha: Jira za muzičare (to-do, objave, zakazivanje koncerata)."
     },
     {
       logo: "assets/aerwave.png",
       title: "Aerwave",
       desc_en:
-        "Personalised managed Wi-Fi networks wherever you go; applicative software, server and firmware for different routers.",
+        "Managed, personalised Wi-Fi; app software, server and firmware for multiple routers.",
       desc_sr:
-        "Personalizovane, upravljane Wi-Fi mreže gdje god da ste; aplikativni softver, server i firmware za različite rutere."
+        "Upravljane, personalizovane Wi-Fi mreže; aplikativni softver, server i firmware za više rutera."
     },
     {
       logo: "assets/kollex.png",
       title: "Kollex",
       desc_en:
-        "BI tool: complex ETL pipelines with Python/Pandas, data visualizations and insights; classification models with scikit-learn.",
+        "BI tool: complex Python/Pandas ETL, visualizations and insights; scikit-learn classification models.",
       desc_sr:
-        "Kollex kao BI alat: ETL kompleksni pipeline-ovi u Pythonu/Pandas, vizualizacije i uvidi; klasifikacioni modeli (scikit-learn)."
+        "BI: kompleksni ETL u Pythonu/Pandas, vizualizacije i uvidi; klasifikacioni modeli (scikit-learn)."
     }
   ];
 
-
-  projects.forEach(p => {
-    const li = document.createElement("article");
-    li.className = "work-card";
-    li.setAttribute("role", "listitem");
-    const desc = isSr ? p.desc_sr : p.desc_en;
-    li.innerHTML = `
-      <div class="logo-wrap">
-        <img src="${p.logo}" alt="${p.title}" loading="lazy" />
-      </div>
-      <h3>${p.title}</h3>
-      <p>${desc}</p>
-    `;
-    track.appendChild(li);
-  });
-
-
-  function getPer() {
+  function getPageSize() {
     const cs = getComputedStyle(viewport);
-    const per = parseInt(cs.getPropertyValue("--per").trim(), 10);
-    return Math.max(1, per || 3);
+    const cols = parseInt(cs.getPropertyValue("--cols").trim(), 10) || 3;
+    const rows = parseInt(cs.getPropertyValue("--rows").trim(), 10) || 2;
+    return Math.max(1, cols * rows);
   }
 
-  function pageBy(direction = 1) {
+  function renderSlides(pageSize, keepPageIndex = 0) {
+    const currentIndex = Math.round(viewport.scrollLeft / Math.max(1, viewport.clientWidth));
+    track.innerHTML = ""; // clear
 
-    const step = viewport.clientWidth;
-    viewport.scrollBy({ left: direction * step, behavior: "smooth" });
+    for (let i = 0; i < projects.length; i += pageSize) {
+      const chunk = projects.slice(i, i + pageSize);
+      const slide = document.createElement("div");
+      slide.className = "work-slide";
+
+      const grid = document.createElement("div");
+      grid.className = "work-slide-grid";
+      grid.setAttribute("role", "list");
+
+      chunk.forEach(p => {
+        const card = document.createElement("article");
+        card.className = "work-card";
+        card.setAttribute("role", "listitem");
+        const desc = isSr ? p.desc_sr : p.desc_en;
+        card.innerHTML = `
+          <div class="logo-wrap">
+            <img src="${p.logo}" alt="${p.title}" loading="lazy" />
+          </div>
+          <h3>${p.title}</h3>
+          <p>${desc}</p>
+        `;
+        grid.appendChild(card);
+      });
+
+      slide.appendChild(grid);
+      track.appendChild(slide);
+    }
+
+    const targetIndex = Number.isFinite(keepPageIndex) ? keepPageIndex : currentIndex;
+    viewport.scrollTo({ left: targetIndex * viewport.clientWidth, behavior: "instant" in viewport ? "instant" : "auto" });
   }
 
+  let pageSize = getPageSize();
+  renderSlides(pageSize, 0);
 
+  function pageBy(dir = 1) {
+    viewport.scrollBy({ left: dir * viewport.clientWidth, behavior: "smooth" });
+  }
   prevBtn.addEventListener("click", () => pageBy(-1));
   nextBtn.addEventListener("click", () => pageBy(1));
-
 
   viewport.addEventListener("keydown", (e) => {
     if (e.key === "ArrowLeft") { e.preventDefault(); pageBy(-1); }
     if (e.key === "ArrowRight") { e.preventDefault(); pageBy(1); }
   });
 
-
   let startX = 0, lastX = 0, isDown = false;
   const THRESHOLD = 40;
-
   viewport.addEventListener("pointerdown", (e) => {
     isDown = true; startX = lastX = e.clientX; viewport.setPointerCapture(e.pointerId);
   });
-  viewport.addEventListener("pointermove", (e) => {
-    if (!isDown) return; lastX = e.clientX;
-  });
+  viewport.addEventListener("pointermove", (e) => { if (isDown) lastX = e.clientX; });
   viewport.addEventListener("pointerup", () => {
     if (!isDown) return; isDown = false;
     const dx = lastX - startX;
     if (Math.abs(dx) > THRESHOLD) pageBy(dx > 0 ? -1 : 1);
+  });
+
+  let resizeTO = null;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTO);
+    resizeTO = setTimeout(() => {
+      const newSize = getPageSize();
+      if (newSize !== pageSize) {
+        const keepIndex = Math.round(viewport.scrollLeft / Math.max(1, viewport.clientWidth));
+        pageSize = newSize;
+        renderSlides(pageSize, keepIndex);
+      }
+    }, 120);
   });
 }
 
