@@ -192,7 +192,6 @@ main > section{
 }
 main > section { overflow: clip; }
 
-/* typewriter caret reduce motion */
 .type{ display:inline-block; font-weight:800; position:relative; }
 .caret{ width:1ch; color:transparent; border-right:2px solid var(--text); animation: blink 1s steps(1) infinite; }
 @media (prefers-reduced-motion: reduce){ .caret{ animation:none; } }
@@ -204,7 +203,6 @@ main > section { overflow: clip; }
 .clients-band .container { width: min(1100px, 92vw); margin: 0 auto; }
 .clients-band h2 { margin: 0 0 1rem; font-size: clamp(1.6rem, 2.2vw, 2rem); letter-spacing: .2px; }
 
-/* prilagodljiv broj kolona, bez fiksnih slotova */
 .client-logos.grid{
   --gap: clamp(18px, 5vw, 64px);
   --logo-h: clamp(32px, 7vw, 64px);
@@ -218,11 +216,10 @@ main > section { overflow: clip; }
 .client-logos li{
   display:flex; align-items:center; justify-content:center;
   padding:6px;
-  min-width:0; min-height:0; /* Safari/iOS overflow fix */
+  min-width:0; min-height:0; 
   line-height:0;
 }
 
-/* logo zauzima prostor bez presijecanja */
 .client-logos img{
   max-width:100%;
   max-height:var(--logo-h);
@@ -235,12 +232,10 @@ main > section { overflow: clip; }
 .client-logos.mono img { filter: brightness(0) invert(1) contrast(1.1); opacity: 1; }
 .client-logos img.keep-brand { filter: none !important; }
 
-/* malo veće logo visine na jako malim ekranima radi čitljivosti */
 @media (max-width: 480px){
   .client-logos.grid{ --logo-h: clamp(36px, 9vw, 72px); }
 }
 
-/* ===== Safe area padding for hero container ===== */
 .hero .container{
   padding-left: 28px;
   padding-right: 28px;
@@ -262,11 +257,7 @@ main > section { overflow: clip; }
 }
 .work-btn:hover{ border-color:rgba(255,255,255,.2); background:rgba(255,255,255,.06); }
 
-/* viewport + responsive broj po stranici
-   desktop: 3 × 2 = 6
-   tablet:  2 × 2 = 4
-   mobitel: 1 × 2 = 2
-*/
+
 .work-viewport{
   --gap:16px;
   --cols:3;
@@ -280,11 +271,9 @@ main > section { overflow: clip; }
 @media (max-width: 900px){ .work-viewport{ --cols:2; --rows:2; } }
 @media (max-width: 600px){ .work-viewport{ --cols:1; --rows:2; } }
 
-/* sakrij horizontalni skrolbar (touch/JS scroll i dalje rade) */
 .work-viewport{ -ms-overflow-style:none; scrollbar-width:none; }
 .work-viewport::-webkit-scrollbar{ display:none; }
 
-/* slajd (stranica) */
 .work-track{
   display:flex;
   gap:0;
@@ -295,14 +284,12 @@ main > section { overflow: clip; }
   scroll-snap-align:start;
 }
 
-/* grid unutar slajda */
 .work-slide-grid{
   display:grid;
   gap:var(--gap);
   grid-template-columns: repeat(var(--cols), 1fr);
 }
 
-/* kartice */
 .work-slide-grid .work-card{ flex:initial; width:auto; }
 .work-card{
   background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow);
